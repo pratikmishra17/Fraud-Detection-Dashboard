@@ -13,23 +13,23 @@ st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide")
 st.markdown(
     """
     <style>
-      /* hide the hamburger menu and top header */
-      #MainMenu {visibility: hidden;}
-      header {visibility: hidden;}
+      /* Hide hamburger menu */
+      #MainMenu { visibility: hidden !important; }
 
-      /* hide the bottom footer (Hosted with Streamlit) */
-      footer {visibility: hidden;}
+      /* Hide top Streamlit header */
+      header { visibility: hidden !important; }
 
-      /* hide the “Created by …” + GitHub fork badge in the bottom-right */
-      a[href*="github.com"][target="_blank"] {
-        display: none !important;
-      }
-      a[href*="streamlit.io"][target="_blank"] {
-        display: none !important;
-      }
+      /* Hide bottom footer (Hosted with Streamlit) */
+      footer { visibility: hidden !important; }
+
+      /* Hide any “Fork on GitHub” link */
+      a[href*="github.com"] { display: none !important; }
+
+      /* Hide any “Hosted with Streamlit” or streamlit.io link */
+      a[href*="streamlit.io"] { display: none !important; }
     </style>
     """,
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
 
 # 2) Load processed data for modeling
