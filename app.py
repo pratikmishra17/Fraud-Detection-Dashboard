@@ -1,5 +1,3 @@
-
-
 # app.py
 import streamlit as st
 import pandas as pd
@@ -10,27 +8,23 @@ from imblearn.over_sampling import SMOTE
 # 1) Page config (must be first Streamlit call)
 st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide")
 
-st.markdown(
-    """
-    <style>
-      /* Hide hamburger menu */
-      #MainMenu { visibility: hidden !important; }
+# --- BEGIN MODIFICATION ---
+# Inject custom CSS to hide the Streamlit branding
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            /* You can also try 'display: none;' if 'visibility: hidden;' doesn't work */
+            /*
+            #MainMenu {display: none;}
+            footer {display: none;}
+            header {display: none;} /* Uncomment this to hide the header */
+            */
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+# --- END MODIFICATION ---
 
-      /* Hide top Streamlit header */
-      header { visibility: hidden !important; }
-
-      /* Hide bottom footer (Hosted with Streamlit) */
-      footer { visibility: hidden !important; }
-
-      /* Hide any “Fork on GitHub” link */
-      a[href*="github.com"] { display: none !important; }
-
-      /* Hide any “Hosted with Streamlit” or streamlit.io link */
-      a[href*="streamlit.io"] { display: none !important; }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 # 2) Load processed data for modeling
 @st.cache_data
@@ -76,15 +70,15 @@ models = {
 }
 
 param_grids = {
-    "Decision Tree":  {"max_depth": [3,5,10,None],        "min_samples_split": [2,5,10]},
+    "Decision Tree":  {"max_depth": [3,5,10,None],       "min_samples_split": [2,5,10]},
     "Random Forest":  {"n_estimators": [50,100],          "max_depth": [5,10,None]},
     "Naive Bayes":    {"var_smoothing": [1e-9,1e-8,1e-7]},
-    "KNN":             {"n_neighbors": [3,5,7,10],        "metric": ["minkowski","euclidean"]},
-    "ANN":            {"hidden_layer_sizes":[(50,),(100,),(50,50)],
-                       "activation":["relu","tanh"],      "solver":["adam"]},
-    "SVM (Linear)":    {"C": [0.1,1,10]},
-    "SVM (RBF)":       {"C": [0.1,1,10],                   "gamma":[0.01,0.1,1]},
-    "Logistic Reg.":   {"C":[0.1,1,10]}
+    "KNN":            {"n_neighbors": [3,5,7,10],        "metric": ["minkowski","euclidean"]},
+    "ANN":           {"hidden_layer_sizes":[(50,),(100,),(50,50)],
+                       "activation":["relu","tanh"],       "solver":["adam"]},
+    "SVM (Linear)":   {"C": [0.1,1,10]},
+    "SVM (RBF)":      {"C": [0.1,1,10],                    "gamma":[0.01,0.1,1]},
+    "Logistic Reg.":  {"C":[0.1,1,10]}
 }
 
 # 5) Session state for “has searched?”
