@@ -1,3 +1,5 @@
+
+
 # app.py
 import streamlit as st
 import pandas as pd
@@ -7,6 +9,22 @@ from imblearn.over_sampling import SMOTE
 
 # 1) Page config (must be first Streamlit call)
 st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide")
+
+st.markdown(
+    """
+    <style>
+      /* hide the “hamburger” menu */
+      #MainMenu {visibility: hidden;}
+
+      /* hide the top “Streamlit” header bar (including GitHub/Fork) */
+      header {visibility: hidden;}
+
+      /* hide the bottom footer (includes “Hosted with Streamlit”) */
+      footer {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # 2) Load processed data for modeling
 @st.cache_data
