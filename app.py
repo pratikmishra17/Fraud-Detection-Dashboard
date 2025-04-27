@@ -12,14 +12,9 @@ st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide")
 # Inject custom CSS to hide the Streamlit branding
 hide_streamlit_style = """
             <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            /* You can also try 'display: none;' if 'visibility: hidden;' doesn't work */
-            /*
             #MainMenu {display: none;}
             footer {display: none;}
-            header {display: none;} /* Uncomment this to hide the header */
-            */
+            header {display: none;} /* Optional: Hide the header */
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
