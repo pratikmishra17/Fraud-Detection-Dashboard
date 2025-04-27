@@ -13,14 +13,20 @@ st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide")
 st.markdown(
     """
     <style>
-      /* hide the “hamburger” menu */
+      /* hide the hamburger menu and top header */
       #MainMenu {visibility: hidden;}
-
-      /* hide the top “Streamlit” header bar (including GitHub/Fork) */
       header {visibility: hidden;}
 
-      /* hide the bottom footer (includes “Hosted with Streamlit”) */
+      /* hide the bottom footer (Hosted with Streamlit) */
       footer {visibility: hidden;}
+
+      /* hide the “Created by …” + GitHub fork badge in the bottom-right */
+      a[href*="github.com"][target="_blank"] {
+        display: none !important;
+      }
+      a[href*="streamlit.io"][target="_blank"] {
+        display: none !important;
+      }
     </style>
     """,
     unsafe_allow_html=True,
