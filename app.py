@@ -8,17 +8,20 @@ from imblearn.over_sampling import SMOTE
 # 1) Page config (must be first Streamlit call)
 st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide")
 
-# --- BEGIN MODIFICATION ---
-# Inject custom CSS to hide the Streamlit branding
 hide_streamlit_style = """
             <style>
-            #MainMenu {display: none;}
-            footer {display: none;}
-            header {display: none;} /* Optional: Hide the header */
+            /* Hide the Streamlit "hamburger" menu */
+            #MainMenu { display: none; }
+
+            /* Hide the Streamlit footer using a more specific selector */
+            section[data-testid="stAppViewContainer"] footer { display: none !important; }
+
+            /* Optional: Hide the header */
+            /* header[data-testid="stHeader"] { display: none !important; } */
+
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-# --- END MODIFICATION ---
 
 
 # 2) Load processed data for modeling
